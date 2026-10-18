@@ -29,7 +29,7 @@ def main():
     total = identical = 0
     for spec in specs:
         font_path, family = spec.rsplit("=", 1)
-        out = os.path.join(ref_dir, ".fonts", family)
+        out = os.path.join(ref_dir, family)
         run = subprocess.run([sys.executable, converter, "--intervals", intervals, "--sizes", sizes,
                               "--style", "regular", "--name", family, "--output-dir", out + os.sep, font_path,
                               *os.environ.get("CPFONT_FLAGS", "").split()],
@@ -39,7 +39,7 @@ def main():
         with zipfile.ZipFile(os.path.join(wasm_dir, f"{family}.zip")) as zf:
             wasm_files = {name: zf.read(name) for name in zf.namelist()}
         for size in sizes.split(","):
-            name = f".fonts/{family}/{family}_{size}.cpfont"
+            name = f"{family}/{family}_{size}.cpfont"
             with open(os.path.join(ref_dir, name), "rb") as f:
                 ref = f.read()
             got = wasm_files.get(name)

@@ -8,20 +8,19 @@ The output carries the OpenType shaping data that CrossInk-Indic's on-device sha
 
 1. Choose or drop one or more `.ttf` files. Each font gets an editable family name, and the page previews its output path.
 2. Pick the script (Bengali by default; Devanagari, Gurmukhi, Gujarati, Odia, Tamil, Telugu, Kannada, Malayalam, Sinhala and Myanmar are also supported) and the point sizes (default `10,12,14,16`).
-3. Click **Convert & download**. You get one zip for all the fonts:
+3. Click **Convert & download**. You get one zip with a folder per font family:
 
    ```text
-   .fonts/
-   ├── Purno/
-   │   ├── Purno_10.cpfont
-   │   ├── Purno_12.cpfont
-   │   ├── Purno_14.cpfont
-   │   └── Purno_16.cpfont
-   └── Kalpurush/
-       └── ...
+   Purno/
+   ├── Purno_10.cpfont
+   ├── Purno_12.cpfont
+   ├── Purno_14.cpfont
+   └── Purno_16.cpfont
+   Kalpurush/
+   └── ...
    ```
 
-4. Copy the `.fonts` folder to the root of the SD card, merging it with any existing one. Then choose the font under **Settings → Reader → Font Family**.
+4. Copy each font folder into your reader's fonts folder. On CrossInk and CrossInk-Indic that is `/fonts/` or `/.fonts/` on the SD card. Then choose the font under **Settings → Reader → Font Family**.
 
 Options:
 

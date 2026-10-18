@@ -1,5 +1,5 @@
 """Runs the unmodified fontconvert_sdcard.py for each uploaded font and zips
-the results as .fonts/<Family>/<Family>_<size>.cpfont."""
+the results as <Family>/<Family>_<size>.cpfont."""
 
 import io
 import json
@@ -84,7 +84,7 @@ def convert_batch(jobs_json, options_json):
                 "--sizes", ",".join(map(str, sizes)),
                 "--style", "regular",
                 "--name", family,
-                "--output-dir", f"{OUT_ROOT}/.fonts/{family}/",
+                "--output-dir", f"{OUT_ROOT}/{family}/",
                 job["path"]]
         if options.get("darkenAa"):
             argv.append("--darken-aa")

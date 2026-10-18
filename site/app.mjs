@@ -134,7 +134,7 @@ function renderList() {
     const updatePath = () => {
       const name = outputFamily(font);
       const firstSize = parseSizes().sizes?.[0] ?? 12;
-      path.textContent = `→ .fonts/${name}/${name}_${firstSize}.cpfont`;
+      path.textContent = `→ ${name}/${name}_${firstSize}.cpfont`;
     };
     input.addEventListener("input", () => {
       font.family = input.value;
@@ -203,7 +203,7 @@ function finish() {
 function showResult(files, zip) {
   if (downloadUrl) URL.revokeObjectURL(downloadUrl);
   downloadUrl = URL.createObjectURL(new Blob([zip], { type: "application/zip" }));
-  const families = [...new Set(files.map((f) => f.split("/")[1]))];
+  const families = [...new Set(files.map((f) => f.split("/")[0]))];
   ui.download.href = downloadUrl;
   ui.download.download = families.length === 1 ? `${families[0]}-cpfont.zip` : "cpfont-fonts.zip";
   ui.resultFiles.replaceChildren(...files.map((name) => Object.assign(document.createElement("li"), { textContent: name })));
