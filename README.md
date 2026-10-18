@@ -1,6 +1,8 @@
-# indic-cpfont-converter
+# indic-cpfont
 
 Convert TrueType fonts to `.cpfont` files for the [CrossInk-Indic](https://github.com/Somnius/CrossInk-Indic) e-reader firmware, entirely in the browser.
+
+**Use it at <https://ffrafat.github.io/indic-cpfont/>**
 
 The output carries the OpenType shaping data that CrossInk-Indic's on-device shaper needs, so Bengali and other Indic scripts render with proper conjuncts, reph and reordered vowel signs. Fonts never leave the visitor's browser, and the site is plain static files that can be hosted anywhere, including Cloudflare Pages.
 
@@ -51,9 +53,17 @@ One build detail matters for matching native output. On x86-64 and arm64, FreeTy
 - with default options, and again with darker anti-aliasing and forced auto-hinting
 - covering both bytecode-hinted fonts and fonts FreeType auto-hints
 
-## Deploying to Cloudflare Pages
+## Deploying
 
 The `site/` folder is the whole website, and it needs no build step.
+
+### GitHub Pages
+
+This repository deploys itself: `.github/workflows/pages.yml` publishes `site/` on every push to `main`. In a fork, enable it once under **Settings → Pages → Source: GitHub Actions**.
+
+Publishing through Actions skips Jekyll. `site/.nojekyll` is there in case you publish from a branch instead, because Jekyll would otherwise drop `py/freetype/__init__.py`.
+
+### Cloudflare Pages
 
 **From GitHub:** in the Cloudflare dashboard, go to **Workers & Pages → Create → Pages → Connect to Git** and pick this repository, then set:
 
@@ -66,7 +76,7 @@ The `site/` folder is the whole website, and it needs no build step.
 **By direct upload, from the command line:**
 
 ```bash
-npx wrangler pages deploy site --project-name indic-cpfont-converter
+npx wrangler pages deploy site --project-name indic-cpfont
 ```
 
 `site/_headers` sets the MIME types for the `.mjs` and `.wasm` files and caching for the WebAssembly module. Any other static host works too, as long as it serves `.wasm` as `application/wasm`.
