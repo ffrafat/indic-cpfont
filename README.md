@@ -4,6 +4,8 @@ Convert TrueType fonts to `.cpfont` files for the [CrossInk-Indic](https://githu
 
 **Use it at <https://ffrafat.github.io/indic-cpfont/>**
 
+`.cpfont` is specific to the CrossPoint / CrossInk firmware family. For plans to bring better Bangla support to other devices, see [ROADMAP.md](ROADMAP.md).
+
 The output carries the OpenType shaping data that CrossInk-Indic's on-device shaper needs, so Bengali and other Indic scripts render with proper conjuncts, reph and reordered vowel signs. Fonts never leave the visitor's browser, and the site is plain static files that can be hosted anywhere, including Cloudflare Pages.
 
 ## Using it
