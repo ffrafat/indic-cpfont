@@ -1,0 +1,21 @@
+/ftw.wasm
+  Content-Type: application/wasm
+  Cache-Control: public, max-age=86400
+
+/ftw.mjs
+  Content-Type: text/javascript; charset=utf-8
+
+/ftbridge.mjs
+  Content-Type: text/javascript; charset=utf-8
+
+/engine.mjs
+  Content-Type: text/javascript; charset=utf-8
+
+/worker.mjs
+  Content-Type: text/javascript; charset=utf-8
+
+/app.mjs
+  Content-Type: text/javascript; charset=utf-8
+
+/py/*
+  Content-Type: text/plain; charset=utf-8

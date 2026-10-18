@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CrossInk-Indic Font Converter</title>
+  <meta name="description" content="Convert TrueType fonts to .cpfont for CrossInk-Indic e-readers, with Bengali and other Indic shaping data. Runs entirely in your browser.">
+  <link rel="stylesheet" href="styles.css">
+  <script type="module" src="app.mjs"></script>
+</head>
+<body>
+  <main>
+    <header>
+      <h1>CrossInk-Indic Font Converter</h1>
+      <p class="lede">Turn a <code>.ttf</code> into <code>.cpfont</code> files for the CrossInk-Indic firmware, with the OpenType shaping data its on-device shaper needs for conjuncts, reph and vowel signs.</p>
+      <p class="privacy">Runs entirely in your browser. Your fonts are never uploaded.</p>
+    </header>
+
+    <section aria-labelledby="fonts-heading">
+      <h2 id="fonts-heading"><span class="step">1</span> Fonts</h2>
+      <label id="dropzone" class="dropzone" for="font-input">
+        <input id="font-input" type="file" accept=".ttf,font/ttf" multiple>
+        <strong>Choose .ttf files</strong> or drop them here
+        <span class="hint">Static TrueType only (no .otf or variable fonts). Add several to convert them together.</span>
+      </label>
+      <ul id="font-list" class="font-list" aria-live="polite"></ul>
+    </section>
+
+    <section aria-labelledby="options-heading">
+      <h2 id="options-heading"><span class="step">2</span> Options</h2>
+      <div class="grid">
+        <label class="field">
+          <span>Script</span>
+          <select id="script"></select>
+        </label>
+        <label class="field">
+          <span>Point sizes</span>
+          <input id="sizes" type="text" inputmode="numeric" value="10,12,14,16" autocomplete="off">
+          <span class="hint">Comma-separated, 6&ndash;72</span>
+        </label>
+      </div>
+      <label class="check">
+        <input id="include-latin" type="checkbox" checked>
+        Include Latin letters and punctuation (for mixed English text)
+      </label>
+      <details>
+        <summary>Advanced</summary>
+        <label class="check">
+          <input id="darken-aa" type="checkbox">
+          Darker anti-aliasing <span class="hint">(matches the built-in reader fonts&rsquo; shading)</span>
+        </label>
+        <label class="check">
+          <input id="force-autohint" type="checkbox">
+          Force FreeType auto-hinting <span class="hint">(ignore the font&rsquo;s own hinting)</span>
+        </label>
+      </details>
+    </section>
+
+    <section aria-labelledby="convert-heading">
+      <h2 id="convert-heading"><span class="step">3</span> Convert</h2>
+      <button id="convert" type="button" disabled>Convert &amp; download</button>
+      <p id="status" class="status" role="status" aria-live="polite">Add at least one font to start.</p>
+      <div id="result" class="result" hidden>
+        <p>Unzip and copy the <code>.fonts</code> folder to the root of the SD card (merge it with any existing <code>.fonts</code> folder). Then pick the font under Settings &rarr; Reader &rarr; Font Family.</p>
+        <ul id="result-files" class="result-files"></ul>
+        <a id="download" class="button-secondary" download>Download again</a>
+      </div>
+      <details id="log-panel">
+        <summary>Conversion log</summary>
+        <pre id="log"></pre>
+      </details>
+    </section>
+
+    <footer>
+      <p>Uses the converter from <a href="https://github.com/Somnius/CrossInk-Indic">CrossInk-Indic</a> (MIT; based on CrossInk and CrossPoint Reader) unchanged, running on <a href="https://pyodide.org">Pyodide</a> with <a href="https://github.com/fonttools/fonttools">fontTools</a> and FreeType&nbsp;2.13.2 + HarfBuzz&nbsp;8.3.0 compiled to WebAssembly. Output is byte-identical to the native Python converter.</p>
+      <p>Portions of this software are copyright &copy; 2023 The FreeType Project (<a href="https://www.freetype.org">www.freetype.org</a>). All rights reserved.</p>
+      <p>Licenses: <a href="licenses/CrossInk-Indic-MIT.txt">CrossInk-Indic converter (MIT)</a>, <a href="licenses/FreeType-FTL.txt">FreeType (FTL)</a>, <a href="licenses/HarfBuzz.txt">HarfBuzz</a>.</p>
+      <p id="versions" class="hint"></p>
+    </footer>
+  </main>
+</body>
+</html>
